@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 export default function TextForm(props) {
+
     const handleUpClick = ()=> {
         setText(text.toUpperCase());
         props.showAlert("Success","Text has been converted into Uppercase")
@@ -20,7 +21,7 @@ export default function TextForm(props) {
         let text = document.getElementById("exampleFormControlTextarea1");
         text.select();
         navigator.clipboard.writeText(text.value);
-        props.showAlert("Success","Text has been copied to clipboard")
+        props.showAlert("Success","Text has been copied to clipboard");
     }
 
     const handleExtraSpaces = ()=>{
@@ -29,9 +30,15 @@ export default function TextForm(props) {
         props.showAlert("Success","Extra spaces has been removed")
     }
 
+    const [word,setWord] = useState([]);
+
     const handleOnChange = (event)=>{
         setText(event.target.value);
+        let array = text.split(" ");
+        let filteredArray = array.filter(word => word.trim() !=="");
+        setWord(filteredArray);
     }
+
     const [text, setText] = useState("");
     // setText("23");
     return (
@@ -49,8 +56,8 @@ export default function TextForm(props) {
             </div>
             <div className="container my-3">
                 <h1>Your Text Summary</h1>
-                <p>{text.split(" ").length} words and {text.length} characters</p>
-                <p>{0.008*(text.split(" ").length)} Minutes read</p>
+                <p>{word.length} words and {text.length} characters</p>
+                <p>{0.008*word.length} Minutes read</p>
                 <h3>Preview</h3>
                 <p>{text.length>0?text:'Enter text to preview here'}</p>
             </div>
