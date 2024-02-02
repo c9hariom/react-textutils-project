@@ -45,7 +45,7 @@ function App() {
         <Alert alert={alert}/>
         <div className="container my-3">
         <Routes> {/* Wrap routes with <Routes> */}
-            <Route exact path="/" element={<TextForm heading="Enter your heading here" mode={mode} showAlert={showAlert}/>}/>
+            <Route exact path="/" element={<TextForm heading="" mode={mode} showAlert={showAlert}/>}/>
             <Route path="/about" element={<About />} />
           </Routes>
             {/* <About/> */}
